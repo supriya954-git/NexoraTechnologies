@@ -1,0 +1,252 @@
+﻿@model NexoraTechnologies.Models.Registration
+
+@{
+    ViewData["Title"] = "Event Registration";
+}
+
+<div class="registration-container">
+
+    <h1>Event Registration</h1>
+
+    <p class="subtitle">
+        Register now to participate in our upcoming events.
+    </p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="success-message">
+            @ViewBag.Message
+        </div>
+    }
+
+    <form asp-controller="Form"
+          asp-action="Index"
+          method="post">
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input asp-for="FullName"
+                   placeholder="Enter your full name" />
+            <span asp-validation-for="FullName"></span>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Email</label>
+                <input asp-for="Email"
+                       type="email"
+                       placeholder="Enter your email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input asp-for="Phone"
+                       placeholder="Enter your phone number" />
+                <span asp-validation-for="Phone"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Select Event</label>
+
+            <select asp-for="EventName">
+                <option value="">-- Select an Event --</option>
+                <option value="Tech Innovation Summit">
+                    Tech Innovation Summit
+                </option>
+                <option value="Coding Hackathon">
+                    Coding Hackathon
+                </option>
+                <option value="Sports Day">
+                    Sports Day
+                </option>
+                <option value="AI and Robotics Workshop">
+                    AI and Robotics Workshop
+                </option>
+            </select>
+
+            <span asp-validation-for="EventName"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+
+            <div class="radio-group">
+                <label>
+                    <input type="radio"
+                           asp-for="Gender"
+                           value="Male" />
+                    Male
+                </label>
+
+                <label>
+                    <input type="radio"
+                           asp-for="Gender"
+                           value="Female" />
+                    Female
+                </label>
+
+                <label>
+                    <input type="radio"
+                           asp-for="Gender"
+                           value="Other" />
+                    Other
+                </label>
+            </div>
+
+            <span asp-validation-for="Gender"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Organization / College</label>
+
+            <input asp-for="Organization"
+                   placeholder="Enter your organization or college" />
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+
+            <textarea asp-for="Address"
+                      placeholder="Enter your address"></textarea>
+
+            <span asp-validation-for="Address"></span>
+        </div>
+
+        <button type="submit">
+            Register for Event
+        </button>
+
+    </form>
+
+</div>
+
+
+<style>
+
+    .registration-container {
+        max-width: 750px;
+        margin: 45px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+        .registration-container h1 {
+            text-align: center;
+            color: #102a43;
+            margin-bottom: 10px;
+        }
+
+    .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+    }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group > label {
+            display: block;
+            font-weight: bold;
+            color: #102a43;
+            margin-bottom: 7px;
+        }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input:not([type]),
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 25px;
+        margin-top: 8px;
+    }
+
+        .radio-group label {
+            font-weight: normal;
+        }
+
+        .radio-group input {
+            margin-right: 5px;
+        }
+
+    span {
+        display: block;
+        color: red;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        background-color: #102a43;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #1d4e73;
+        }
+
+    .success-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 6px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    @@media (max-width: 650px) {
+
+        .registration-container {
+            margin: 20px;
+            padding: 25px;
+        }
+
+        .form-row {
+            display: block;
+        }
+
+        .radio-group {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+
+</style>
